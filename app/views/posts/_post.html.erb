@@ -1,6 +1,10 @@
 <h2><%= link_to(post.title, post_path(post)) %></h2>
 <div class="entrybody">
-  <%=raw post.body_html %>
+  <% unless params[:controller] == "posts" and params[:action] == "show" %>
+    <%=raw post.teaser %>
+  <% else %>
+    <%=raw post.body_html %>
+  <% end %>
 </div>
 <div class="meta">
   <ul>

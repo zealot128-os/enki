@@ -117,6 +117,12 @@ a img:hover {
 
 .entrybody, #main {
   line-height: 1.5; }
+  .entrybody .tags a, #main .tags a {
+    background: #eeeeff;
+    border: 0 !important;
+    box-shadow: 2px 1px 1px #333333;
+    -moz-box-shadow: 2px 1px 1px #333333;
+    -webkit-box-shadow: 2px 1px 1px #333333; }
   .entrybody a, #main a {
     border-bottom: 2px solid darkRed;
     color: black; }

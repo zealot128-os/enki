@@ -14,6 +14,10 @@ class Post < ActiveRecord::Base
 
   validate                :validate_published_at_natural
 
+  include ActionView::Helpers::TextHelper
+  extend ActiveSupport::Memoizable
+
+
   def validate_published_at_natural
     errors.add("published_at_natural", "Unable to parse time") unless published?
   end
@@ -22,6 +26,12 @@ class Post < ActiveRecord::Base
   def minor_edit
     @minor_edit ||= "1"
   end
+
+  def teaser
+    sanitized = strip_tags(body_html.gsub("<p>"," <p>"))
+    truncate(sanitized, :length => 500, :separator => " ")
+  end
+  memoize :teaser
 
   def minor_edit?
     self.minor_edit == "1"
