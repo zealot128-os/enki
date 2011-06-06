@@ -1,0 +1,26 @@
+!!!
+%html{:dir => "ltr", :lang => "de-DE"}
+  %head
+    %meta{:charset => "utf-8"}
+      %title= yield(:page_title) || enki_config[:title]
+      = stylesheet_link_tag :all
+      = javascript_include_tag :all
+      = open_id_delegation_link_tags(enki_config[:open_id_delegation, :server], enki_config[:open_id_delegation, :delegate]) if enki_config[:open_id_delegation]
+      = yield(:head)
+  %body
+    #wrapper-header
+      #header
+        %h1#page_heading
+          %a{:href => root_url}= enki_config[:title]
+    #wrapper-menu
+      #menu
+        %ul
+          =render "layouts/menu"
+
+    #page_container
+      #main
+        = yield
+      #footer
+        = enki_config[:title]
+        = succeed "." do
+          %a{:href => "http://www.enkiblog.com", :title => "Powered by Enki Blogengine"}
