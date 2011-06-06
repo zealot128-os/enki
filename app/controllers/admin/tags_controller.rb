@@ -20,9 +20,16 @@ class Admin::TagsController < Admin::BaseController
     end
   end
 
+  def destroy
+    @tag.taggings.destroy_all
+    @tag.destroy
+
+  end
+
   protected
 
   def find_tag
     @tag = Tag.find(params[:id])
+    redirect_to "/admin/tags", :notice => "delete successful"
   end
 end

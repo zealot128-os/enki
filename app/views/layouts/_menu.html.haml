@@ -1,1 +1,3 @@
 %li=link_to "Home", root_path
+- Page.all.each do |page|
+  %li=link_to page.title, "/pages/#{page.slug}"
